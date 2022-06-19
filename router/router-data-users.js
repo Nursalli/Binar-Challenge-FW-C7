@@ -4,7 +4,7 @@ const routerDataUsers = express.Router();
 const { body } = require('express-validator');
 
 //Contoller
-const { index, duplicate, add, addPost, findUser, edit, editPost, deletePost } = require('../controllers/user-games');
+const { index, duplicate, add, addPost, findUser, edit, editPost, deletePost } = require('../controllers/user-games-controller');
 
 //Endpoint Router
 routerDataUsers.get('/', index);

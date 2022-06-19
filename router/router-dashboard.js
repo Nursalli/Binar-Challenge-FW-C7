@@ -3,7 +3,7 @@ const express = require('express');
 const routerDashboard = express.Router();
 
 //Contoller
-const { index } = require('../controllers/dashboard');
+const { index } = require('../controllers/dashboard-controller');
 
 //Endpoint Router
 routerDashboard.get('/', index);

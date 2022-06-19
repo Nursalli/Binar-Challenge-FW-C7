@@ -4,7 +4,7 @@ const routerHistoryUsers = express.Router();
 const { body } = require('express-validator');
 
 //Contoller
-const { index, checkUser, add, addPost, deletePost } = require('../controllers/user-histories');
+const { index, checkUser, add, addPost, deletePost } = require('../controllers/user-histories-controller');
 
 //Endpoint Router
 routerHistoryUsers.get('/', index);

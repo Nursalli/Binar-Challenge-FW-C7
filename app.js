@@ -12,13 +12,6 @@ require('dotenv').config();
 const app = express();
 const port = 3000;
 
-//Set View Engine EJS
-app.set('view engine', 'ejs');
-
-//Third-Party Middleware (For logger and Layouts)
-app.use(morgan('dev'));
-app.use(expressLayouts);
-
 //Use Middleware
 //Built-in Middleware (For add Public Directory, JSON File and Parsing x-www-urlencoded)
 app.use(express.static('public'));
@@ -35,7 +28,20 @@ app.use(
         saveUninitialized: true
     })
 );
+
+//Middleware Passport
+const passport = require('./lib/passport');
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(flash());
+
+//Set View Engine EJS
+app.set('view engine', 'ejs');
+
+//Third-Party Middleware (For logger and Layouts)
+app.use(morgan('dev'));
+app.use(expressLayouts);
 
 //Middleware Login
 const { verifyToken } = require('./middleware/verify');

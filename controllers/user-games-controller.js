@@ -62,10 +62,7 @@ const addPost = (req, res) => {
             errors: errors.array()
         });
     } else {
-        User_games.create({
-            username: req.body.username,
-            password: bcrypt.hashSync(req.body.password, 10)
-        })
+        User_games.register(req.body)
             .then((data) => {
                 req.flash('msg', 'Data User Created!');
                 res.redirect('/dashboard/data-users');
@@ -139,11 +136,7 @@ const editPost = async (req, res) => {
                 }
             } 
     
-            User_games.update(newData, {
-                    where: {
-                        id: req.params.id
-                    }
-                })
+            User_games.update(newData, req.params.id)
                     .then((data) => {
                         req.flash('msg', 'Data User Updated!');
                         res.redirect('/dashboard/data-users');

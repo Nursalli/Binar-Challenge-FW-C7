@@ -2,6 +2,9 @@
 const {
   Model
 } = require('sequelize');
+
+const bcrypt = require('bcryptjs');
+
 module.exports = (sequelize, DataTypes) => {
   class User_games extends Model {
     /**
@@ -17,6 +20,54 @@ module.exports = (sequelize, DataTypes) => {
       User_games.hasOne(models.User_game_biodata, {
         foreignKey: 'id_user'
       });
+    }
+
+    // Method untuk melakukan enkripsi
+    static #encrypt = (password) => {
+      return bcrypt.hashSync(password, 10);
+    }
+
+    static register = ({username, password}) => {
+      const encryptedPassword = this.#encrypt(password);
+
+      return this.create({ 
+        username, 
+        password: encryptedPassword 
+      });
+    }
+
+    static update = (newData, id) => {
+      return this.update(newData, {
+        where: {
+          id
+        }
+      });
+    }
+
+    static authenticate = async ({ username, password }) => {
+      try {
+        const user = await this.findOne({ 
+          where: { 
+            username 
+          }
+        });
+
+        const checkPassword = bcrypt.compareSync(password, user.password);
+        const checkSuperUser = (user.role === 'Super User') ? true : false;
+
+        if (!user && !checkSuperUser) {
+          return Promise.reject("Wrong Username/Password!")
+        }
+
+        if (!checkPassword) {
+          return Promise.reject("Wrong Username/Password!")
+        }
+
+        return Promise.resolve(user)
+      }
+      catch(err) {
+        return Promise.reject(err)
+      }  
     }
   }
   User_games.init({
