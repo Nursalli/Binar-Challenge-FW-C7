@@ -1,0 +1,77 @@
+<div class="table-responsive">
+    <!-- Check Available User_games -->
+    <% if (Object.keys(checkDataUserGames).length > 0) { %>
+        <a href="/dashboard/biodata-users/add" class="btn btn-success mb-3"> <i class="bi bi-plus-circle"></i> Add</a>
+    <% } %>
+
+    <!-- Alert Success -->
+    <% if (msg.length !== 0) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success</strong> <%= msg %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <!-- Alert Error -->
+    <% if (msgError.length !== 0) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Failed</strong> <%= msgError %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ID User</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Birthdate</th>
+                <th>Country</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop Data User_game_biodata -->
+            <% data.forEach(user => { %>
+                <tr>
+                    <td><%= user.id %></td>
+                    <td><%= user.id_user %></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.birthdate.toLocaleDateString('pt-PT') %></td>
+                    <td><%= user.country %></td>
+                    <td>
+                        <a href="/dashboard/biodata-users/edit/<%= user.id %>" class="badge bg-warning text-decoration-none text-dark">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <a href="#" class="badge bg-danger text-decoration-none deleteBiodataUser" data-id="<%= user.id %>" data-bs-toggle="modal" data-bs-target="#deleteBiodataUser">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteBiodataUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Biodata User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="#" method="POST">
+                <div class="modal-body">
+                    Are You Sure?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-danger">Yes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

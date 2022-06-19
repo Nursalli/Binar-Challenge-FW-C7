@@ -1,0 +1,45 @@
+{
+  "name": "binar-challenge-fw-c6",
+  "version": "1.0.0",
+  "description": "Challenge FW C6",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "db:drop": "sequelize db:drop --config=sequelize-cli.config.json",
+    "db:create": "sequelize db:create --config=sequelize-cli.config.json",
+    "db:migrate": "sequelize db:migrate --config=sequelize-cli.config.json",
+    "db:seed:all": "sequelize db:seed:all --config=sequelize-cli.config.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nursalli/Binar-Challenge-FW-C6.git"
+  },
+  "keywords": [],
+  "author": "Muhammad Nursalli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nursalli/Binar-Challenge-FW-C6/issues"
+  },
+  "homepage": "https://github.com/Nursalli/Binar-Challenge-FW-C6#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.3",
+    "express-validator": "^6.14.1",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
+    "pg": "^8.7.3",
+    "sequelize": "^6.20.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.16",
+    "sequelize-cli": "^6.4.1"
+  }
+}

@@ -1,0 +1,24 @@
+<h2 class="mb-3">G.O.A.T</h2>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th>#Rangking</th>
+                <th>ID User</th>
+                <th>Time (Minute)</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop Data User_games (Rangking) -->
+            <% data.forEach((user, i) => { %>
+                <tr>
+                    <td><%= i + 1 %></td>
+                    <td><%= user.id_user %></td>
+                    <td><%= user.time %></td>
+                    <td><%= user.score %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>

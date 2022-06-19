@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Muhammad Nursalli">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title><%= page %></title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/bootstrap5/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="/css/styleLogin.css">
+</head>
+
+<body class="text-center">
+
+    <main class="form-signin">
+        <form action="/" method="POST">
+            <img class="mb-4" src="/img/logo-binar.png" alt="" width="100" height="100">
+            <h1 class="h3 mb-3 fw-normal">Please Login</h1>
+
+            <!-- Alert Login Error -->
+            <% if (msg.length !== 0) { %>
+                <div class="alert alert-danger" role="alert">
+                    <%= msg %> 
+                </div>
+            <% } %>
+
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingUsername" name="username" placeholder="Enter Username">
+                <label for="floatingUsername">Username</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Enter Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+            <p class="mt-5 mb-3 text-muted">&copy; <%= author %> <%= copyrightYear %> </p>
+        </form>
+    </main>
+
+</body>
+
+</html>

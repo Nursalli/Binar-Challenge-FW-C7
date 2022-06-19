@@ -1,0 +1,30 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link <%- page === 'Dashboard Page' ? 'active' : '' %>" aria-current="page" href="/dashboard">
+                    <i class="bi bi-house-door"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <%- page === 'Data Users Page' ? 'active' : '' %>" href="/dashboard/data-users">
+                    <i class="bi bi-people"></i>
+                    Data Users
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <%- page === 'Biodata Users Page' ? 'active' : '' %>" href="/dashboard/biodata-users">
+                    <i class="bi bi-file-person"></i>
+                    Biodata Users
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <%- page === 'History Users Page' ? 'active' : '' %>" href="/dashboard/history-users">
+                    <i class="bi bi-clock-history"></i>
+                    History Users
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

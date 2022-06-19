@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <!-- Form Error -->
+        <% if (typeof errors != 'undefined') { %>
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    <% errors.forEach(error => { %>
+                        <li> <%= error.msg %> </li> 
+                    <% }) %>
+                </ul>
+            </div>
+        <% } %>
+        <form action="/dashboard/biodata-users/add" method="POST">
+            <div class="mb-3">
+                <label for="id_user" class="form-label">User</label>
+                <select class="form-select" id="id_user" name="id_user" required>
+                    <% dataUserGames.forEach(user => { %>
+                        <option value="<%= user.id %>"><%= user.username %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+            </div>
+            <div class="mb-3">
+                <label for="birthdate" class="form-label">Birthdate</label>
+                <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="Enter Birthdate" 
+                max="<%= new Date().toISOString().split('T')[0] %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <input type="text" class="form-control" id="country" name="country" placeholder="Enter Country">
+            </div>
+            <button class="btn btn-success" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
