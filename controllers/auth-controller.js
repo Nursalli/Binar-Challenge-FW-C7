@@ -21,7 +21,7 @@ const index = (req, res) => {
     });
 }
 
-const authentication = (req, res) => {
+const authentication = (req, res, next) => {
 
     const errors = validationResult(req);
 
@@ -29,10 +29,15 @@ const authentication = (req, res) => {
             req.flash('msg', "Username/Password Can't be Empty!");
             res.redirect('/');
         }
+
+    next()
 }
 
 const logout = (req, res) => {
-    res.redirect('/');
+    req.session.destroy(()=>{
+        res.clearCookie('connect.sid');
+        res.redirect('/');
+    });
 }
 
 module.exports = { index, authentication, logout }

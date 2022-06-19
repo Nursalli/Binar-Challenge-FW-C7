@@ -5,12 +5,13 @@ const { body } = require('express-validator');
 //Contoller
 const { index, add, checkUser, duplicateUserBiodata, duplicateEmailBiodata, duplicateEmailNewBiodata, checkBirthdateBiodata, addPost, 
     edit, findUserBiodata, editPost, deletePost } = require('../controllers/user-biodata-controller');
+const restrict = require('../middleware/restrict');
 
-routerBiodataUsers.get('/', index);
+routerBiodataUsers.get('/', restrict, index);
 
-routerBiodataUsers.get('/add', add);
+routerBiodataUsers.get('/add', restrict, add);
 
-routerBiodataUsers.post('/add', 
+routerBiodataUsers.post('/add', restrict,
     [
         body('id_user').custom(async (data) => {
             const checkUserGames = await checkUser(parseInt(data));
@@ -45,9 +46,9 @@ routerBiodataUsers.post('/add',
     ],
     addPost);
 
-routerBiodataUsers.get('/edit/:id', edit);
+routerBiodataUsers.get('/edit/:id', restrict, edit);
 
-routerBiodataUsers.put('/edit/:id', 
+routerBiodataUsers.put('/edit/:id', restrict,
     [
         body('id_user').custom(async (data, { req }) => {
             const checkUserGames = await checkUser(parseInt(data));
@@ -90,6 +91,6 @@ routerBiodataUsers.put('/edit/:id',
     ],
     editPost);
 
-routerBiodataUsers.delete('/delete/:id', deletePost);
+routerBiodataUsers.delete('/delete/:id', restrict, deletePost);
 
 module.exports = { routerBiodataUsers }

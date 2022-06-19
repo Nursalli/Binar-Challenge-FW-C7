@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
-    static update = (newData, id) => {
+    static updateData = (newData, id) => {
       return this.update(newData, {
         where: {
           id
@@ -55,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
         const checkPassword = bcrypt.compareSync(password, user.password);
         const checkSuperUser = (user.role === 'Super User') ? true : false;
 
-        if (!user && !checkSuperUser) {
+        if (!user || !checkSuperUser) {
           return Promise.reject("Wrong Username/Password!")
         }
 

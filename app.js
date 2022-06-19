@@ -22,10 +22,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser('secret'));
 app.use(
     session({
-        cookie: { maxAge: 6000 },
+        // cookie: { maxAge: 6000 },
         secret: 'secret',
-        resave: true,
-        saveUninitialized: true
+        resave: false,
+        saveUninitialized: false
     })
 );
 

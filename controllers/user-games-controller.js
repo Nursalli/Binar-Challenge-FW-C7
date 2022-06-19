@@ -136,7 +136,7 @@ const editPost = async (req, res) => {
                 }
             } 
     
-            User_games.update(newData, req.params.id)
+            User_games.updateData(newData, req.params.id)
                     .then((data) => {
                         req.flash('msg', 'Data User Updated!');
                         res.redirect('/dashboard/data-users');

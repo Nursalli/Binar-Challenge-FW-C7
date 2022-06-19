@@ -5,13 +5,14 @@ const { body } = require('express-validator');
 
 //Contoller
 const { index, checkUser, add, addPost, deletePost } = require('../controllers/user-histories-controller');
+const restrict = require('../middleware/restrict');
 
 //Endpoint Router
-routerHistoryUsers.get('/', index);
+routerHistoryUsers.get('/', restrict, index);
 
-routerHistoryUsers.get('/add', add);
+routerHistoryUsers.get('/add', restrict, add);
 
-routerHistoryUsers.post('/add', 
+routerHistoryUsers.post('/add', restrict,
     [
         body('id_user').custom(async (data) => {
             const checkUserGames = await checkUser(parseInt(data));
@@ -27,6 +28,6 @@ routerHistoryUsers.post('/add',
     ],
     addPost);
 
-routerHistoryUsers.delete('/delete/:id', deletePost);
+routerHistoryUsers.delete('/delete/:id', restrict, deletePost);
 
 module.exports = { routerHistoryUsers }
