@@ -69,6 +69,43 @@ module.exports = (sequelize, DataTypes) => {
         return Promise.reject(err)
       }  
     }
+
+    static generateToken = () => {
+      const payload = {
+        id: this.id,
+        username: this.username
+      }
+
+      const token = jwt.sign(payload, process.env.JWT_KEY);
+      
+      return token
+    }      
+
+    static authenticateAPI = async ({ username, password }) => {
+      try {
+        const user = await this.findOne({ 
+          where: { 
+            username 
+          }
+        });
+
+        const checkPassword = bcrypt.compareSync(password, user.password);
+        const checkSuperUser = (user.role === 'User') ? true : false;
+
+        if (!user || !checkSuperUser) {
+          return Promise.reject("Wrong Username/Password!")
+        }
+
+        if (!checkPassword) {
+          return Promise.reject("Wrong Username/Password!")
+        }
+
+        return Promise.resolve(user)
+      }
+      catch(err) {
+        return Promise.reject(err)
+      }  
+    }
   }
   User_games.init({
     username: {

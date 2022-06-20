@@ -28,13 +28,12 @@ app.use(
         saveUninitialized: false
     })
 );
+app.use(flash());
 
 //Middleware Passport
 const passport = require('./lib/passport');
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(flash());
 
 //Set View Engine EJS
 app.set('view engine', 'ejs');
@@ -61,6 +60,11 @@ app.use('/dashboard', routerDashboard);
 app.use('/dashboard/data-users', routerDataUsers);
 app.use('/dashboard/biodata-users', routerBiodataUsers);
 app.use('/dashboard/history-users', routerHistoryUsers);
+
+//API Router
+const { routerPlayerAuth } = require('./router/API/router-player-auth');
+
+app.use(routerPlayerAuth);
 
 //Error Handling Middleware (Internal Server Error)
 app.use((err, req, res, next) => {
