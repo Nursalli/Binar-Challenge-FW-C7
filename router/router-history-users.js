@@ -5,7 +5,7 @@ const { body } = require('express-validator');
 
 //Contoller
 const { index, checkUser, add, addPost, deletePost } = require('../controllers/user-histories-controller');
-const restrict = require('../middleware/restrict');
+const restrict = require('../middleware/restrict-local');
 
 //Endpoint Router
 routerHistoryUsers.get('/', restrict, index);

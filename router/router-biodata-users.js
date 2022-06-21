@@ -5,7 +5,7 @@ const { body } = require('express-validator');
 //Contoller
 const { index, add, checkUser, duplicateUserBiodata, duplicateEmailBiodata, duplicateEmailNewBiodata, checkBirthdateBiodata, addPost, 
     edit, findUserBiodata, editPost, deletePost } = require('../controllers/user-biodata-controller');
-const restrict = require('../middleware/restrict');
+const restrict = require('../middleware/restrict-local');
 
 routerBiodataUsers.get('/', restrict, index);
 

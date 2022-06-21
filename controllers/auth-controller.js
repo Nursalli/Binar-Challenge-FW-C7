@@ -3,8 +3,6 @@ const { User_games, User_game_biodata } = require('../models');
 
 //Third-Party Module
 const { validationResult } = require('express-validator');
-// const bcrypt = require('bcryptjs');
-// const jwt = require('jsonwebtoken');
 
 //Handler
 const index = (req, res) => {

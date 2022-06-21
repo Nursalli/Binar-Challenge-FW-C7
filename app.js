@@ -31,9 +31,11 @@ app.use(
 app.use(flash());
 
 //Middleware Passport
-const passport = require('./lib/passport-local');
-app.use(passport.initialize());
-app.use(passport.session());
+const passportLocal = require('./lib/passport-local');
+const passportJWT = require('./lib/passport-jwt');
+app.use(passportLocal.initialize());
+app.use(passportJWT.initialize());
+app.use(passportLocal.session());
 
 //Set View Engine EJS
 app.set('view engine', 'ejs');
@@ -41,9 +43,6 @@ app.set('view engine', 'ejs');
 //Third-Party Middleware (For logger and Layouts)
 app.use(morgan('dev'));
 app.use(expressLayouts);
-
-//Middleware Login
-const { verifyToken } = require('./middleware/verify');
 
 //Setup Method Override
 app.use(methodOverride('_method'));
@@ -63,8 +62,10 @@ app.use('/dashboard/history-users', routerHistoryUsers);
 
 //API Router
 const { routerPlayerAuth } = require('./router/API/router-player-auth');
+const { routerPlayerGame } = require('./router/API/router-player-game');
 
 app.use(routerPlayerAuth);
+app.use(routerPlayerGame);
 
 //Error Handling Middleware (Internal Server Error)
 app.use((err, req, res, next) => {

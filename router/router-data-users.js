@@ -5,7 +5,7 @@ const { body } = require('express-validator');
 
 //Contoller
 const { index, duplicate, add, addPost, findUser, edit, editPost, deletePost } = require('../controllers/user-games-controller');
-const restrict = require('../middleware/restrict');
+const restrict = require('../middleware/restrict-local');
 
 //Endpoint Router
 routerDataUsers.get('/', restrict, index);

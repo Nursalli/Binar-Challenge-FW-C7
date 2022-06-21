@@ -4,7 +4,7 @@ const routerDashboard = express.Router();
 
 //Contoller
 const { index } = require('../controllers/dashboard-controller');
-const restrict = require('../middleware/restrict');
+const restrict = require('../middleware/restrict-local');
 
 //Endpoint Router
 routerDashboard.get('/', restrict, index);
