@@ -5,7 +5,7 @@ const { body } = require('express-validator');
 //Contoller
 const { duplicate } = require('../../controllers/user-games-controller');
 const { duplicateEmailBiodata, checkBirthdateBiodata } = require('../../controllers/user-biodata-controller');
-const { authenticationRegister, registerAPI, loginAPI } = require('../../controllers/auth-controller');
+const { authenticationAuth, registerAPI, loginAPI } = require('../../controllers/auth-controller');
 
 routerPlayerAuth.post('/api/player/register', 
     [
@@ -38,9 +38,14 @@ routerPlayerAuth.post('/api/player/register',
         }),
         body('birthdate').notEmpty()
     ], 
-    authenticationRegister,
+    authenticationAuth,
     registerAPI);
 
-routerPlayerAuth.post('/login', loginAPI);
+routerPlayerAuth.post('/api/player/login', [
+        body('username').notEmpty(),
+        body('password').notEmpty()
+    ],
+    authenticationAuth, 
+    loginAPI);
 
 module.exports = { routerPlayerAuth }

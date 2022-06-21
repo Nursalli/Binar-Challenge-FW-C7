@@ -31,7 +31,7 @@ app.use(
 app.use(flash());
 
 //Middleware Passport
-const passport = require('./lib/passport');
+const passport = require('./lib/passport-local');
 app.use(passport.initialize());
 app.use(passport.session());
 

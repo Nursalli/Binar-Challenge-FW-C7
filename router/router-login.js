@@ -2,7 +2,7 @@
 const express = require('express');
 const routerLogin = express.Router();
 const { body } = require('express-validator');
-const passport = require('../lib/passport');
+const passport = require('../lib/passport-local');
 
 //Contoller
 const { index, authentication, logout } = require('../controllers/auth-controller');

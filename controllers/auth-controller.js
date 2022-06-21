@@ -41,16 +41,7 @@ const logout = (req, res) => {
 }
 
 //API
-const format = (user) => {
-    const { id, username } = user;
-    return {
-        id,
-        username,
-        accessToken: User_games.generateToken()
-    }
-}
-
-const authenticationRegister = (req, res, next) => {
+const authenticationAuth = (req, res, next) => {
 
     const errors = validationResult(req);
 
@@ -100,10 +91,24 @@ const registerAPI = async (req, res) => {
     });
 }
 
-const loginAPI = (req, res) => {
-    res.json({
-        res:'Oke'
-    })
+const loginAPI = async (req, res) => {
+    try{
+        const user = await User_games.authenticateAPI(req.body);
+
+        const { id, username } = user;
+        const token = await User_games.generateToken(user);
+
+        res.status(200).json({
+            status: 'logged in',
+            id,
+            username,
+            token
+        });
+    } catch (err) {
+        res.status(400).json({
+            status: 'Wrong Username/Password!'
+        });
+    }
 }
 
-module.exports = { index, authentication, logout, authenticationRegister, registerAPI, loginAPI }
+module.exports = { index, authentication, logout, authenticationAuth, registerAPI, loginAPI }
