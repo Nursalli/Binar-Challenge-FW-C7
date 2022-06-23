@@ -55,4 +55,4 @@ routerDataUsers.put('/edit/:id', restrict,
 
 routerDataUsers.delete('/delete/:id', restrict, deletePost);
 
-module.exports = { routerDataUsers } 
+module.exports = routerDataUsers

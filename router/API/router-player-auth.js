@@ -7,7 +7,7 @@ const { duplicate } = require('../../controllers/user-games-controller');
 const { duplicateEmailBiodata, checkBirthdateBiodata } = require('../../controllers/user-biodata-controller');
 const { authenticationAuth, registerAPI, loginAPI } = require('../../controllers/auth-controller');
 
-routerPlayerAuth.post('/api/player/register', 
+routerPlayerAuth.post('/register', 
     [
         body('username').custom(async (data) => {
             const check = await duplicate(data);
@@ -41,11 +41,11 @@ routerPlayerAuth.post('/api/player/register',
     authenticationAuth,
     registerAPI);
 
-routerPlayerAuth.post('/api/player/login', [
+routerPlayerAuth.post('/login', [
         body('username').notEmpty(),
         body('password').notEmpty()
     ],
     authenticationAuth, 
     loginAPI);
 
-module.exports = { routerPlayerAuth }
+module.exports = routerPlayerAuth

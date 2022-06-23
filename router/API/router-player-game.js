@@ -2,25 +2,25 @@ const express = require('express');
 const routerPlayerGame = express.Router();
 const { body } = require('express-validator');
 
-const { authenticationGame, createRoom, joinRoom, playGame, gameResult } = require('../../controllers/play-game-controller');
+const playGame = require('../../controllers/play-game-controller');
 const restrict = require('../../middleware/restrict-jwt');
 const option = ['R', 'S', 'P'];
 
-routerPlayerGame.post('/api/player/game/create-room', [
+routerPlayerGame.post('/create-room', [
     body('name').notEmpty()
 ],
     restrict,
-    authenticationGame,
-    createRoom)
+    playGame.authenticationGame,
+    playGame.createRoom)
 
-routerPlayerGame.post('/api/player/game/join', [
+routerPlayerGame.post('/join', [
     body('roomId').notEmpty()
 ],
     restrict,
-    authenticationGame,
-    joinRoom)
+    playGame.authenticationGame,
+    playGame.joinRoom)
 
-routerPlayerGame.post('/api/player/game/play/:roomId', [
+routerPlayerGame.post('/play/:roomId', [
     body('opt_1').custom((data) => {
         const checkData = option.includes(data);
         if(!checkData){
@@ -47,11 +47,11 @@ routerPlayerGame.post('/api/player/game/play/:roomId', [
     }),
 ],
     restrict,
-    authenticationGame,
-    playGame)
+    playGame.authenticationGame,
+    playGame.playGame)
 
-routerPlayerGame.get('/api/player/game/play/:roomId/result', 
+routerPlayerGame.get('/play/:roomId/result', 
     restrict,
-    gameResult)
+    playGame.gameResult)
 
-module.exports = { routerPlayerGame }
+module.exports = routerPlayerGame

@@ -23,4 +23,4 @@ routerLogin.post('/',
 
 routerLogin.get('/logout', logout);
 
-module.exports = { routerLogin }
+module.exports = routerLogin

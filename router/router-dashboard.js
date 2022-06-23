@@ -9,4 +9,4 @@ const restrict = require('../middleware/restrict-local');
 //Endpoint Router
 routerDashboard.get('/', restrict, index);
 
-module.exports = { routerDashboard };
+module.exports = routerDashboard;

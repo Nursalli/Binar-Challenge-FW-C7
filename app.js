@@ -48,11 +48,11 @@ app.use(expressLayouts);
 app.use(methodOverride('_method'));
 
 //Web Page Router
-const { routerLogin } = require('./router/router-login');
-const { routerDashboard } = require('./router/router-dashboard');
-const { routerDataUsers } = require('./router/router-data-users');
-const { routerBiodataUsers } = require('./router/router-biodata-users');
-const { routerHistoryUsers } = require('./router/router-history-users');
+const routerLogin = require('./router/router-login');
+const routerDashboard = require('./router/router-dashboard');
+const routerDataUsers = require('./router/router-data-users');
+const routerBiodataUsers = require('./router/router-biodata-users');
+const routerHistoryUsers = require('./router/router-history-users');
 
 app.use('/', routerLogin);
 app.use('/dashboard', routerDashboard);
@@ -61,11 +61,8 @@ app.use('/dashboard/biodata-users', routerBiodataUsers);
 app.use('/dashboard/history-users', routerHistoryUsers);
 
 //API Router
-const { routerPlayerAuth } = require('./router/API/router-player-auth');
-const { routerPlayerGame } = require('./router/API/router-player-game');
-
-app.use(routerPlayerAuth);
-app.use(routerPlayerGame);
+const router = require('./router/API');
+router(app);
 
 //Error Handling Middleware (Internal Server Error)
 app.use((err, req, res, next) => {

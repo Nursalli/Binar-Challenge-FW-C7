@@ -37,7 +37,7 @@ module.exports = {
       },
       result: {
         allowNull: false,
-        type: Sequelize.DataTypes.ENUM('Win', 'Draw', 'Lose'),
+        type: Sequelize.DataTypes.ENUM('Win', 'Draw', 'Lose', '-'),
         defaultValue: '-'
       },
       score: {

@@ -22,7 +22,7 @@
     <table class="table table-striped table-sm">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>No</th>
                 <th>ID User</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -33,9 +33,9 @@
         </thead>
         <tbody>
             <!-- Loop Data User_game_biodata -->
-            <% data.forEach(user => { %>
+            <% data.forEach((user,i) => { %>
                 <tr>
-                    <td><%= user.id %></td>
+                    <td><%= i+1 %></td>
                     <td><%= user.id_user %></td>
                     <td><%= user.name %></td>
                     <td><%= user.email %></td>

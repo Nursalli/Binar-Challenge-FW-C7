@@ -93,4 +93,4 @@ routerBiodataUsers.put('/edit/:id', restrict,
 
 routerBiodataUsers.delete('/delete/:id', restrict, deletePost);
 
-module.exports = { routerBiodataUsers }
+module.exports = routerBiodataUsers

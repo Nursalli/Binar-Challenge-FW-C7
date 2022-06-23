@@ -1,9 +1,9 @@
 //Connect Models
-const { User_games, User_game_histories } = require('../models');
+const { User_game_histories } = require('../models');
 
 //Third-Party Module
-const { Op } = require("sequelize");
-const { validationResult } = require('express-validator');
+// const { Op } = require("sequelize");
+// const { validationResult } = require('express-validator');
 
 //Handler
 const index = async (req, res) => {
@@ -22,71 +22,71 @@ const index = async (req, res) => {
     });
 }
 
-const add = async (req, res) => {
-    const page = 'History Users Page';
-    const title = 'Add History Users';
+// const add = async (req, res) => {
+//     const page = 'History Users Page';
+//     const title = 'Add History Users';
 
-    const dataUserGames = await User_games.findAll({
-        where: {
-            role: {
-                [Op.ne] : 'Super User'
-            }
-        }
-    });
+//     const dataUserGames = await User_games.findAll({
+//         where: {
+//             role: {
+//                 [Op.ne] : 'Super User'
+//             }
+//         }
+//     });
 
-    res.render('dashboard/add/add-history-user', {
-        layout: 'dashboard/layouts/main',
-        page,
-        title,
-        dataUserGames
-    });
-}
+//     res.render('dashboard/add/add-history-user', {
+//         layout: 'dashboard/layouts/main',
+//         page,
+//         title,
+//         dataUserGames
+//     });
+// }
 
-const checkUser = (user_id) => {
-    return User_games.findOne({
-        where: {
-            [Op.and] : {
-                id: {
-                    [Op.eq] : user_id
-                },
-                role: {
-                    [Op.ne] : 'Super User'
-                }
-            }
-        }
-    })
-}
+// const checkUser = (user_id) => {
+//     return User_games.findOne({
+//         where: {
+//             [Op.and] : {
+//                 id: {
+//                     [Op.eq] : user_id
+//                 },
+//                 role: {
+//                     [Op.ne] : 'Super User'
+//                 }
+//             }
+//         }
+//     })
+// }
 
-const addPost = async (req, res) => {
-    const errors = validationResult(req);
+// const addPost = async (req, res) => {
+//     const errors = validationResult(req);
 
-    if(!errors.isEmpty()){
-        const page = 'History Users Page';
-        const title = 'Add History Users';
+//     if(!errors.isEmpty()){
+//         const page = 'History Users Page';
+//         const title = 'Add History Users';
 
-        const dataUserGames = await User_games.findAll({
-            where: {
-                role: {
-                    [Op.ne] : 'Super User'
-                }
-            }
-        });
+//         const dataUserGames = await User_games.findAll({
+//             where: {
+//                 role: {
+//                     [Op.ne] : 'Super User'
+//                 }
+//             }
+//         });
 
-        res.render('dashboard/add/add-history-user', {
-            layout: 'dashboard/layouts/main',
-            page,
-            title,
-            dataUserGames,
-            errors: errors.array()
-        });
-    } else {
-        User_game_histories.create(req.body)
-            .then((data) => {
-                req.flash('msg', 'Data History Created!');
-                res.redirect('/dashboard/history-users');
-            });
-    }
-}
+//         res.render('dashboard/add/add-history-user', {
+//             layout: 'dashboard/layouts/main',
+//             page,
+//             title,
+//             dataUserGames,
+//             errors: errors.array()
+//         });
+//     } else {
+//         User_game_histories.create(req.body)
+//             .then((data) => {
+//                 req.flash('msg', 'Data History Created!');
+//                 res.redirect('/dashboard/history-users');
+//             });
+//     }
+// }
 
 const findUserHistories = (id) => {
     return User_game_histories.findOne({
@@ -115,4 +115,4 @@ const deletePost = async (req, res) => {
     }
 }
 
-module.exports = { index, checkUser, add, addPost, deletePost }
+module.exports = { index, deletePost }
