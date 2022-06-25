@@ -39,7 +39,8 @@ const index = async (req, res) => {
         layout: 'dashboard/layouts/main',
         page,
         title,
-        data
+        data,
+        admin: req.user.dataValues   
     });
 }
 

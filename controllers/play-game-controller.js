@@ -5,14 +5,6 @@ const { User_game_histories } = require('../models');
 const { validationResult } = require('express-validator');
 const { Op } = require("sequelize");
 const randomstring = require('randomstring');
-const jwt_decode = require('jwt-decode');
-
-const dataAuthorization = (auth) => {
-    const token = auth;
-    const data = jwt_decode(token);
-
-    return data
-}
 
 //API
 module.exports = {
@@ -26,10 +18,8 @@ module.exports = {
         next()
     },
     createRoom: async (req, res) => {
-        const decoded = dataAuthorization(req.headers.authorization);
-        
         const data = {
-            id_user: decoded.id,
+            id_user: req.user.id,
             time: 0,
             room_id: req.body.name + randomstring.generate(5),
             score: 0
@@ -43,12 +33,10 @@ module.exports = {
         })
     },
     joinRoom: async (req, res) => {
-        const decoded = dataAuthorization(req.headers.authorization);
-    
         const dataUser = await User_game_histories.findOne({
             where: {
                 [Op.and] : {
-                    id_user: decoded.id,
+                    id_user: req.user.id,
                     room_id: req.body.roomId
                 }
             }
@@ -70,7 +58,7 @@ module.exports = {
             if(availableRoom.length > 0){
                 if(availableRoom.length === 1){
                     const data = {
-                        id_user: decoded.id,
+                        id_user: req.user.id,
                         time: 0,
                         room_id: req.body.roomId,
                         score: 0
@@ -94,12 +82,10 @@ module.exports = {
         }
     },
     playGame: async (req, res) => {
-        const decoded = dataAuthorization(req.headers.authorization);
-    
         const dataUser = await User_game_histories.findOne({
             where: {
                 [Op.and] : {
-                    id_user: decoded.id,
+                    id_user: req.user.id,
                     room_id: req.params.roomId,
                     opt_1: '-',
                     opt_2: '-',
@@ -124,7 +110,7 @@ module.exports = {
             const dataUserNew = await User_game_histories.findOne({
                 where: {
                     [Op.and] : {
-                        id_user: decoded.id,
+                        id_user: req.user.id,
                         room_id: req.params.roomId
                     }
                 }
@@ -134,7 +120,7 @@ module.exports = {
                 where: {
                     [Op.and] : {
                         id_user: {
-                            [Op.notIn]: decoded.id
+                            [Op.notIn]: req.user.id
                         },
                         room_id: req.params.roomId
                     }
@@ -246,8 +232,6 @@ module.exports = {
         }
     },
     gameResult: async (req, res) => {
-        const decoded = dataAuthorization(req.headers.authorization);
-    
         const dataGame = await User_game_histories.findAll({
             attributes: [
                 'id_user', 
@@ -261,12 +245,12 @@ module.exports = {
             where: {
                 [Op.or] : {
                     [Op.and] : {
-                        id_user: decoded.id,
+                        id_user: req.user.id,
                         room_id: req.params.roomId
                     },
                     [Op.and] : {
                         id_user: {
-                            [Op.notIn]: decoded.id
+                            [Op.notIn]: req.user.id
                         },
                         room_id: req.params.roomId
                     }
@@ -277,7 +261,7 @@ module.exports = {
         let yourResult = {};
         let opponentResult = {};
     
-        dataGame.map(i => i.id_user === decoded.id ? yourResult = i : opponentResult = i)
+        dataGame.map(i => i.id_user === req.user.id ? yourResult = i : opponentResult = i)
     
         if(yourResult.opt_1 === '-' || yourResult.opt_2 === '-' || yourResult.opt_3 === '-'){
             res.status(200).json({

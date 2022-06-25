@@ -18,7 +18,8 @@ const index = async (req, res) => {
         title,
         data,
         msg: req.flash('msg'),
-        msgError: req.flash('msgError')
+        msgError: req.flash('msgError'),
+        admin: req.user.dataValues 
     });
 }
 

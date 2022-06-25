@@ -23,7 +23,7 @@ app.use(cookieParser('secret'));
 app.use(
     session({
         // cookie: { maxAge: 6000 },
-        secret: 'secret',
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false
     })
@@ -112,11 +112,11 @@ app.listen(port, () => {
 // 5. opt_1 (ENUM('R', 'S', 'P', '-') DEFAULT '-'
 // 6. opt_2 (ENUM('R', 'S', 'P', '-') DEFAULT '-'
 // 7. opt_3 (ENUM('R', 'S', 'P', '-') DEFAULT '-'
-// 8. result (ENUM('Win', 'Lose', '-') DEFAULT '-'
+// 8. result (ENUM('Win', 'Draw', 'Lose', '-') DEFAULT '-'
 // 9. score (INT NOT NULL)
 
 // Alur Game:
-// 1. User bikin room (input:name) -> tambah data history: id_user, time(0), room_id(name+5 angka random), score(0)
+// 1. User buat room (input:name) -> tambah data history: id_user, time(0), room_id(name+5 angka random), score(0)
 // 2. Join game (/join)(input:name) -> cek apakah nama room ada + cek apakah nama room sdh di pake 2 user -> pertama kali? -> tambah data history: id_user, time(0), room_id(name -> copy dari nama yg sdh ada), score(0)
-// 3. Game (play/room_id) -> cek apakah nama room ada + cek apakah room_id sdh 2 org yg pake + cek apakah player 1 sudah input pilihan? kalau belum -> player 2 input pilihan1, pilihan2, pilihan3 -> menunggu player 1 | kalau sdh -> player 2 input pilihan1, pilihan2, pilihan3 sekaligus kalkulasi hasil permainan (logic) + update score(menang: 10, kalah 0) + update time(player 1 dan 2 + 10) dan update status_room
-// 4. cek hasil permain (play/room_id/result) -> menampilkan room_id, pilihan1, pilihan2, pilihan3, dan status_room
+// 3. Game (play/room_id) -> cek apakah nama room ada + cek apakah room_id sdh 2 org yg pake + cek apakah player 1 sudah input pilihan? kalau belum -> player 2 input pilihan1, pilihan2, pilihan3 -> menunggu player 1 | kalau sdh -> player 2 input pilihan1, pilihan2, pilihan3 sekaligus kalkulasi hasil permainan (logic) + update score(menang: 100, kalah 0) + update time(player 1 dan 2 + 5) dan update result
+// 4. cek hasil permain (play/room_id/result) -> menampilkan room_id, pilihan1, pilihan2, pilihan3, result dan score

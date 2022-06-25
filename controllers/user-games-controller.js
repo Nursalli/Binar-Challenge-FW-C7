@@ -25,7 +25,8 @@ const index = async (req, res) => {
         title,
         data,
         msg: req.flash('msg'),
-        msgError: req.flash('msgError')
+        msgError: req.flash('msgError'),
+        admin: req.user.dataValues 
     });
 }
 
@@ -44,7 +45,8 @@ const add = (req, res) => {
     res.render('dashboard/add/add-data-user', {
         layout: 'dashboard/layouts/main',
         page,
-        title
+        title,
+        admin: req.user.dataValues 
     });
 }
 
@@ -59,7 +61,8 @@ const addPost = (req, res) => {
             layout: 'dashboard/layouts/main',
             page,
             title,
-            errors: errors.array()
+            errors: errors.array(),
+            admin: req.user.dataValues 
         });
     } else {
         User_games.register(req.body)
@@ -94,7 +97,8 @@ const edit = async (req, res) => {
             layout: 'dashboard/layouts/main',
             page,
             title,
-            data
+            data,
+            admin: req.user.dataValues 
         });
     } else {
         req.flash('msgError', 'User Not Found!');
@@ -120,7 +124,8 @@ const editPost = async (req, res) => {
                 data: {
                     id: req.params.id,
                     username: req.body.username
-                }
+                },
+                admin: req.user.dataValues 
             });
         } else {
             let newData = {};
