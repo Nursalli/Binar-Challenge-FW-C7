@@ -22,8 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id_user'
       });
     }
-
-    // Method untuk melakukan enkripsi
+    
     static #encrypt = (password) => {
       return bcrypt.hashSync(password, 10);
     }

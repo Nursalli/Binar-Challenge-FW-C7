@@ -1,3 +1,4 @@
+//Third-Party Module
 const express = require('express');
 const routerBiodataUsers = express.Router();
 const { body } = require('express-validator');
@@ -7,6 +8,7 @@ const { index, add, checkUser, duplicateUserBiodata, duplicateEmailBiodata, dupl
     edit, findUserBiodata, editPost, deletePost } = require('../controllers/user-biodata-controller');
 const restrict = require('../middleware/restrict-local');
 
+//Endpoint Router
 routerBiodataUsers.get('/', restrict, index);
 
 routerBiodataUsers.get('/add', restrict, add);

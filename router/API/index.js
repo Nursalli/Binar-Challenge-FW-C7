@@ -1,3 +1,4 @@
+//Router
 const routerPlayerAuth = require('./router-player-auth'); 
 const routerPlayerGame = require('./router-player-game'); 
 

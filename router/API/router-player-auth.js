@@ -1,3 +1,4 @@
+//Third-Party Module
 const express = require('express');
 const routerPlayerAuth = express.Router();
 const { body } = require('express-validator');
@@ -7,6 +8,7 @@ const { duplicate } = require('../../controllers/user-games-controller');
 const { duplicateEmailBiodata, checkBirthdateBiodata } = require('../../controllers/user-biodata-controller');
 const { authenticationAuth, registerAPI, loginAPI } = require('../../controllers/auth-controller');
 
+//Endpoint Router
 routerPlayerAuth.post('/register', 
     [
         body('username').custom(async (data) => {

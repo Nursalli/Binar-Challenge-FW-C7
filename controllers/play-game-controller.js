@@ -128,7 +128,7 @@ module.exports = {
             })
             
             if(dataUserOpponent.opt_1 !== '-' || dataUserOpponent.opt_2 !== '-' || dataUserOpponent.opt_3 !== '-') {
-                //Logic Game
+                //Game Logic
                 let yourResult = 0;
                 let opponentResult = 0;
     
