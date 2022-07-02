@@ -72,11 +72,14 @@ module.exports = (sequelize, DataTypes) => {
 
     static generateToken = (user) => {
       const payload = {
-        id: user.id,
-        username: user.username
+        sub: user.id,
+        iss: 'Binar Game RSP',
+        aud: 'User Binar Game',
       }
 
-      return jwt.sign(payload, process.env.JWT_KEY);
+      return jwt.sign(payload, process.env.JWT_KEY, {
+        expiresIn: '24h'
+      });
     }      
 
     static authenticateAPI = async ({ username, password }) => {

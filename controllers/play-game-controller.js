@@ -109,25 +109,21 @@ module.exports = {
     
             const dataUserNew = await User_game_histories.findOne({
                 where: {
-                    [Op.and] : {
-                        id_user: req.user.id,
-                        room_id: req.params.roomId
-                    }
+                    id_user: req.user.id,
+                    room_id: req.params.roomId
                 }
             })
     
             const dataUserOpponent = await User_game_histories.findOne({
                 where: {
-                    [Op.and] : {
-                        id_user: {
-                            [Op.notIn]: req.user.id
-                        },
-                        room_id: req.params.roomId
-                    }
+                    id_user: {
+                        [Op.not]: req.user.id
+                    },
+                    room_id: req.params.roomId
                 }
             })
             
-            if(dataUserOpponent.opt_1 !== '-' || dataUserOpponent.opt_2 !== '-' || dataUserOpponent.opt_3 !== '-') {
+            if(dataUserOpponent !== null && (dataUserOpponent.opt_1 !== '-' || dataUserOpponent.opt_2 !== '-' || dataUserOpponent.opt_3 !== '-')) {
                 //Game Logic
                 let yourResult = 0;
                 let opponentResult = 0;
@@ -137,8 +133,8 @@ module.exports = {
     
                 for(let i = 0; i < yourData.length; i++){
                     if(yourData[i] === opponentData[i]){
-                        yourResult += 0;
-                        opponentResult += 0;
+                        yourResult += 50;
+                        opponentResult += 50;
                     } else if (yourData[i] === 'R'){
                         if(opponentData[i] === 'S'){
                             yourResult += 100;
@@ -243,20 +239,15 @@ module.exports = {
                 'score'
             ],
             where: {
-                [Op.or] : {
-                    [Op.and] : {
-                        id_user: req.user.id,
-                        room_id: req.params.roomId
-                    },
-                    [Op.and] : {
-                        id_user: {
-                            [Op.notIn]: req.user.id
-                        },
-                        room_id: req.params.roomId
-                    }
-                }
+                room_id: req.params.roomId
             }
         }) 
+
+        if(Object.keys(dataGame).length === 0){
+            res.status(400).json({
+                status: 'roomId Not Found!'
+            })
+        }
     
         let yourResult = {};
         let opponentResult = {};

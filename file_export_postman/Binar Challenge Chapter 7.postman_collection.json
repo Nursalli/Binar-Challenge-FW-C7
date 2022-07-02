@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "94ed2c0a-e062-4bce-a30b-3d2a7d4a6646",
+		"_postman_id": "dee887b5-17fa-40b1-9bd8-d2d14524f7bd",
 		"name": "Binar Challenge Chapter 7",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "5473913"
@@ -73,13 +73,13 @@
 				"header": [
 					{
 						"key": "authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJ0ZXMiLCJpYXQiOjE2NTYxNTIxMjh9.YMnpCqFC0IeHBWG8lyp8I2sdKbJwgzxSUCERZNHzxQc",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsImlzcyI6IkJpbmFyIEdhbWUgUlNQIiwiYXVkIjoiVXNlciBCaW5hciBHYW1lIiwiaWF0IjoxNjU2NzU2MTg4LCJleHAiOjE2NTY4NDI1ODh9.RZ2aoUc2T6Fokk28cHa64k2cHnopO6R8OuR--TAAeps",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"lainka123\"\r\n}",
+					"raw": "{\r\n    \"name\": \"contoh\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -110,13 +110,13 @@
 				"header": [
 					{
 						"key": "authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJzYWxpIiwiaWF0IjoxNjU2MTUyNTYwfQ.AxHOAuGE59usBDFsVxBsoCwcpCDxK1yX_b9m6dXZOj4",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImlzcyI6IkJpbmFyIEdhbWUgUlNQIiwiYXVkIjoiVXNlciBCaW5hciBHYW1lIiwiaWF0IjoxNjU2NzU2MjU0LCJleHAiOjE2NTY4NDI2NTR9.nps-yqJv_q1wByY25AeHwyo5KXxzgXFDZ79lnLlRoiY",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"roomId\": \"lainka1231aRub\"\r\n}",
+					"raw": "{\r\n    \"roomId\": \"contohB2th8\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -147,7 +147,7 @@
 				"header": [
 					{
 						"key": "authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJ0ZXMiLCJpYXQiOjE2NTYxNTIxMjh9.YMnpCqFC0IeHBWG8lyp8I2sdKbJwgzxSUCERZNHzxQc",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsImlzcyI6IkJpbmFyIEdhbWUgUlNQIiwiYXVkIjoiVXNlciBCaW5hciBHYW1lIiwiaWF0IjoxNjU2NzU2MTg4LCJleHAiOjE2NTY4NDI1ODh9.RZ2aoUc2T6Fokk28cHa64k2cHnopO6R8OuR--TAAeps",
 						"type": "text"
 					}
 				],
@@ -161,7 +161,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/player/game/play/lainka1231aRub",
+					"raw": "http://localhost:3000/api/player/game/play/contohB2th8",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -172,7 +172,7 @@
 						"player",
 						"game",
 						"play",
-						"lainka1231aRub"
+						"contohB2th8"
 					]
 				}
 			},
@@ -185,12 +185,12 @@
 				"header": [
 					{
 						"key": "authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJ0ZXMiLCJpYXQiOjE2NTYxNTIxMjh9.YMnpCqFC0IeHBWG8lyp8I2sdKbJwgzxSUCERZNHzxQc",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsImlzcyI6IkJpbmFyIEdhbWUgUlNQIiwiYXVkIjoiVXNlciBCaW5hciBHYW1lIiwiaWF0IjoxNjU2NzU2MTg4LCJleHAiOjE2NTY4NDI1ODh9.RZ2aoUc2T6Fokk28cHa64k2cHnopO6R8OuR--TAAeps",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/player/game/play/lainka1231aRub/result",
+					"raw": "http://localhost:3000/api/player/game/play/contohB2th8/result",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -201,7 +201,7 @@
 						"player",
 						"game",
 						"play",
-						"lainka1231aRub",
+						"contohB2th8",
 						"result"
 					]
 				}
