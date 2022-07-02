@@ -38,7 +38,8 @@ const index = async (req, res) => {
         data,
         checkDataUserGames,
         msg: req.flash('msg'),
-        msgError: req.flash('msgError')
+        msgError: req.flash('msgError'),
+        admin: req.user.dataValues
     });
 }
 
@@ -70,7 +71,8 @@ const add = async (req, res) => {
             layout: 'dashboard/layouts/main',
             page,
             title,
-            dataUserGames
+            dataUserGames,
+            admin: req.user.dataValues
         });
     } else {
         req.flash('msgError', 'All User Had Biodata!');
@@ -164,7 +166,8 @@ const addPost = async (req, res) => {
             page,
             title,
             dataUserGames,
-            errors: errors.array()
+            errors: errors.array(),
+            admin: req.user.dataValues 
         });
     } else {
         const country = req.body.country;
@@ -235,7 +238,8 @@ const edit = async (req, res) => {
         page,
         title,
         dataUserGames,
-        data
+        data,
+        admin: req.user.dataValues 
     });
 }
 
@@ -291,7 +295,8 @@ const editPost = async (req, res) => {
                 email: req.body.email,
                 birthdateOld: req.body.birthdate,
                 country: req.body.country
-            }
+            },
+            admin: req.user.dataValues 
         });
     } else {
         const country = req.body.country;

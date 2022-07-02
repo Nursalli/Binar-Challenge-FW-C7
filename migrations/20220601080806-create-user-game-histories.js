@@ -16,6 +16,30 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
+      room_id: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      opt_1: {
+        allowNull: false,
+        type: Sequelize.DataTypes.ENUM('R', 'S', 'P', '-'),
+        defaultValue: '-'
+      },
+      opt_2: {
+        allowNull: false,
+        type: Sequelize.DataTypes.ENUM('R', 'S', 'P', '-'),
+        defaultValue: '-'
+      },
+      opt_3: {
+        allowNull: false,
+        type: Sequelize.DataTypes.ENUM('R', 'S', 'P', '-'),
+        defaultValue: '-'
+      },
+      result: {
+        allowNull: false,
+        type: Sequelize.DataTypes.ENUM('Win', 'Draw', 'Lose', '-'),
+        defaultValue: '-'
+      },
       score: {
         allowNull: false,
         type: Sequelize.INTEGER

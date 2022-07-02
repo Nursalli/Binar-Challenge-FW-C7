@@ -4,14 +4,15 @@ const routerDataUsers = express.Router();
 const { body } = require('express-validator');
 
 //Contoller
-const { index, duplicate, add, addPost, findUser, edit, editPost, deletePost } = require('../controllers/user-games');
+const { index, duplicate, add, addPost, findUser, edit, editPost, deletePost } = require('../controllers/user-games-controller');
+const restrict = require('../middleware/restrict-local');
 
 //Endpoint Router
-routerDataUsers.get('/', index);
+routerDataUsers.get('/', restrict, index);
 
-routerDataUsers.get('/add', add);
+routerDataUsers.get('/add', restrict, add);
 
-routerDataUsers.post('/add', 
+routerDataUsers.post('/add', restrict,
     [
         body('username').custom(async (data) => {
             const check = await duplicate(data);
@@ -26,9 +27,9 @@ routerDataUsers.post('/add',
     ],
     addPost);
 
-routerDataUsers.get('/edit/:id', edit);
+routerDataUsers.get('/edit/:id', restrict, edit);
 
-routerDataUsers.put('/edit/:id', 
+routerDataUsers.put('/edit/:id', restrict,
     [
         body('username').custom(async (data, { req }) => {
             const user = await findUser(parseInt(req.params.id));
@@ -52,6 +53,6 @@ routerDataUsers.put('/edit/:id',
     ],
     editPost);
 
-routerDataUsers.delete('/delete/:id', deletePost);
+routerDataUsers.delete('/delete/:id', restrict, deletePost);
 
-module.exports = { routerDataUsers } 
+module.exports = routerDataUsers

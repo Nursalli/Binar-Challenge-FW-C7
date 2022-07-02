@@ -3,9 +3,10 @@ const express = require('express');
 const routerDashboard = express.Router();
 
 //Contoller
-const { index } = require('../controllers/dashboard');
+const { index } = require('../controllers/dashboard-controller');
+const restrict = require('../middleware/restrict-local');
 
 //Endpoint Router
-routerDashboard.get('/', index);
+routerDashboard.get('/', restrict, index);
 
-module.exports = { routerDashboard };
+module.exports = routerDashboard;

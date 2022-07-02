@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <a href="/dashboard/history-users/add" class="btn btn-success mb-3"> <i class="bi bi-plus-circle"></i> Add</a>
+    <!-- <a href="/dashboard/history-users/add" class="btn btn-success mb-3"> <i class="bi bi-plus-circle"></i> Add</a> -->
 
     <!-- Alert Success -->
     <% if (msg.length !== 0) { %>
@@ -19,20 +19,30 @@
     <table class="table table-striped table-sm">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>No</th>
                 <th>ID User</th>
                 <th>Time (Minute)</th>
-                <th>Score (1-100)</th>
+                <th>Room ID</th>
+                <th>Option 1</th>
+                <th>Option 2</th>
+                <th>Option 2</th>
+                <th>Result</th>
+                <th>Score</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <!-- Loop Data User_game_histories -->
-            <% data.forEach(user => { %>
+            <% data.forEach((user,i) => { %>
                 <tr>
-                    <td><%= user.id %></td>
+                    <td><%= i+1 %></td>
                     <td><%= user.id_user %></td>
                     <td><%= user.time %></td>
+                    <td><%= user.room_id %></td>
+                    <td><%= user.opt_1 %></td>
+                    <td><%= user.opt_2 %></td>
+                    <td><%= user.opt_3 %></td>
+                    <td><%= user.result %></td>
                     <td><%= user.score %></td>
                     <td>
                         <a href="#" class="badge bg-danger text-decoration-none deleteHistoryUser" data-id="<%= user.id %>" data-bs-toggle="modal" data-bs-target="#deleteHistoryUser">

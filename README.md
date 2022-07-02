@@ -33,6 +33,7 @@ add `.env` file with this kind of format:
 
 ```
 JWT_KEY = jsfgfjguwrg8783wgbjs849h2fu3cnsvh8wyr8fhwfvi2g225
+SESSION_SECRET = secret
 DATABASE_NAME=try_sequelize
 DATABASE_USERNAME=root
 DATABASE_PASSWORD=somepw
@@ -49,8 +50,22 @@ $ npm run db:migrate
 $ npm run db:seed:all
 $ npm run start
 ```
+## Web Page (Authenticated By Passport-Local) 
+```
 Login Access (localhost:3000):
 Username: admin |
 Password: admin123
+```
 
-Noted: Authorization not completed (like logout and check every page must be login before) but still work for login and you can access localhost:3000/dashboard for access dashboard without login :V
+## API Game Rock, Scissor, and Paper (Authenticated By Passport-jwt)
+```
+1. Open your postman
+2. Import API (file from directory file_export_postman/Binar Challenge Chapter 7.postman_collection.json) to your postman
+3. After import you can:
+    - register
+    - login 
+    - create-room (with tokenUser), 1 user can create more than 1 room and automatically join roomId has been created
+    - join (with tokenUser and roomId), user can join if roomId is available (only for 2 player) 
+    - play (with tokenUser and roomId), user can input 3 option ('R': Rock, 'S': Scissor, 'P': Paper)
+    - see game result (with tokenUser roomId), game result with user option, opponent option (if opponent already input option), result (if user and opponent already input option), and score ('Win': 100, 'Draw': 50, 'Lose': 0)/battle option
+```
